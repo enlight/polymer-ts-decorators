@@ -1,0 +1,38 @@
+﻿{
+  "name": "polymer-ts-decorators",
+  "version": "0.1.0",
+  "engines": [
+    "node >=0.12.0"
+  ],
+  "description": "TypeScript decorators for Polymer 1.0 that enable more concise definition of web components.",
+  "main": "src/decorators.ts",
+  "scripts": {
+    "preinstall": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enlight/polymer-ts-decorators.git"
+  },
+  "keywords": [
+    "polymer"
+  ],
+  "author": "Vadim Macagon",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^2.1.2",
+    "chai-as-promised": "^4.3.0",
+    "grunt": "^0.4.5",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-tsd": "^0.2.0-beta.1",
+    "grunt-tslint": "^2.2.0-beta",
+    "grunt-typedoc": "^0.2.2",
+    "grunt-typescript": "^0.6.1",
+    "mocha": "^2.2.5",
+    "source-map-support": "^0.2.10",
+    "tslint": "^2.2.0-beta",
+    "typedoc": "^0.3.4",
+    "typescript": "^1.5.0-beta"
+  },
+  "bugs": "https://github.com/enlight/polymer-ts-decorators/issues"
+}

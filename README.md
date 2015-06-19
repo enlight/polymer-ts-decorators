@@ -82,10 +82,8 @@ Polymer(MyElement.prototype);
 @behavior
 ---------
 A class decorator that adds a behavior prototype to the `behaviors` property on
-the class prototype. Note that the decorator expects a class to be passed in, not
-a prototype. The [`behaviors`](https://www.polymer-project.org/1.0/docs/devguide/behaviors.html)
-property is an array of prototypes that Polymer will merge into the class
-prototype.
+the class prototype. The [`behaviors`](https://www.polymer-project.org/1.0/docs/devguide/behaviors.html)
+property is an array of prototypes that Polymer will merge into the class prototype.
 
 ```TypeScript
 class SwooshBehavior {
@@ -97,7 +95,7 @@ class SwishBehavior {
 }
 
 @pd.is('my-element')
-@pd.behavior(SwooshBehavior)
+@pd.behavior(SwooshBehavior.prototype)
 @pd.behavior(SwishBehavior)
 class MyElement {
   ...
@@ -116,7 +114,7 @@ observers are merged into a single array.
 
 ```TypeScript
 @pd.is('my-element')
-@pd.behaviors([SwishBehavior, SwooshBehavior])
+@pd.behaviors([SwishBehavior.prototype, SwooshBehavior])
 class MyElement {
   ...
 }

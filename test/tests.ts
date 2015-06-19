@@ -56,7 +56,7 @@ class TestBehavior2 implements polymer.IBehavior {
 class BehaviorTestElement {
 }
 
-@pd.behavior(TestBehavior2)
+@pd.behavior(TestBehavior2.prototype)
 @pd.behavior(TestBehavior)
 class BehaviorTestElement2 {
 }
@@ -67,7 +67,7 @@ describe('@behavior', () => {
     expect(elementPrototype).to.have.property('behaviors').that.has.lengthOf(1);
     expect(elementPrototype.behaviors[0]).equals(TestBehavior.prototype);
   });
-  it('adds a behavior prototype to an existing "behaviors" property on the class prototype', () => {
+  it('adds a behavior class to an existing "behaviors" property on the class prototype', () => {
     let elementPrototype: polymer.IBehavior = BehaviorTestElement2.prototype;
     expect(elementPrototype).to.have.property('behaviors').that.has.lengthOf(2);
     expect(elementPrototype.behaviors[0]).equals(TestBehavior.prototype);
@@ -89,7 +89,7 @@ class TestBehavior3 implements polymer.IBehavior {
 class TestBehavior4 implements polymer.IBehavior {
 }
 
-@pd.behaviors([TestBehavior3, TestBehavior4])
+@pd.behaviors([TestBehavior3.prototype, TestBehavior4.prototype])
 @pd.behaviors([TestBehavior, TestBehavior2])
 class BehaviorTestElement4 {
 }

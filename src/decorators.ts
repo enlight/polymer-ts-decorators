@@ -15,18 +15,30 @@ export function extend(elementName: string): ClassDecorator {
   };
 }
 
-export function behavior(behaviorClass: Function): ClassDecorator {
+/**
+ * Generates a class decorator that adds a behavior to a custom Polymer element.
+ *
+ * @param behaviorClassOrPrototype A behavior class (a constructor function) or a prototype object.
+ */
+export function behavior(behaviorClassOrPrototype: Function | Object): ClassDecorator {
   return (targetClass: Function) => {
     let prototype: polymer.IBehavior = targetClass.prototype;
     prototype.behaviors = prototype.behaviors || [];
-    prototype.behaviors.push(behaviorClass.prototype);
+    prototype.behaviors.push((behaviorClassOrPrototype instanceof Function) ?
+      behaviorClassOrPrototype.prototype : behaviorClassOrPrototype
+    );
   };
 }
 
-export function behaviors(behaviorClasses: Function[]): ClassDecorator {
+/** Generates a class decorator that adds a list of behaviors to a custom Polymer element. */
+export function behaviors(behaviorClassesOrPrototypes: Array<Function | Object>): ClassDecorator {
   return (targetClass: Function) => {
     let prototype: polymer.IBehavior = targetClass.prototype;
-    let behaviors = behaviorClasses.map(behaviorClass => behaviorClass.prototype);
+    let behaviors = behaviorClassesOrPrototypes.map(
+      behaviorClassOrPrototype => ((behaviorClassOrPrototype instanceof Function) ?
+        behaviorClassOrPrototype.prototype : behaviorClassOrPrototype
+      )
+    );
     prototype.behaviors = prototype.behaviors ? prototype.behaviors.concat(behaviors) : behaviors;
   };
 }

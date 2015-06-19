@@ -29,8 +29,7 @@ module.exports = function(grunt) {
         },
         files: {
           src: [
-            'src/**/*.ts',
-            'test/**/*.ts'
+            'src/**/*.ts'
           ]
         }
       }
@@ -80,8 +79,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build', ['typescript']);
   
   grunt.registerTask('run-tests', ['mochaTest:test']);
-  // FIXME: tslint can't handle decorators it seems so taking it out for now
-  grunt.registerTask('test', ['build', /*'tslint',*/ 'run-tests']);
+  
+  grunt.registerTask('test', ['build', 'tslint', 'run-tests']);
 
   grunt.registerTask('default', ['test']);
 };

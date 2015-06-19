@@ -14,6 +14,10 @@ chai.use(chaiAsPromised);
 // alias
 var expect = chai.expect;
 
+//
+// @is
+//
+
 @pd.is('is-decorator-test')
 class IsDecoratorTestElement {
 }
@@ -24,15 +28,23 @@ describe('@is', () => {
   });
 });
 
-@pd.extendsElement('input')
-class ExtendsDecoratorTestElement {
+//
+// @extend
+//
+
+@pd.extend('input')
+class ExtendDecoratorTestElement {
 }
 
-describe('@extendsElement', () => {
+describe('@extend', () => {
   it('adds "extends" property to the class prototype', () => {
-    expect(ExtendsDecoratorTestElement.prototype).to.have.property('extends', 'input');
+    expect(ExtendDecoratorTestElement.prototype).to.have.property('extends', 'input');
   });
 });
+
+//
+// @behavior
+//
 
 class TestBehavior implements polymer.IBehavior {
 }
@@ -62,6 +74,10 @@ describe('@behavior', () => {
     expect(elementPrototype.behaviors[1]).equals(TestBehavior2.prototype);
   });
 });
+
+//
+// @behaviors
+//
 
 @pd.behaviors([TestBehavior, TestBehavior2])
 class BehaviorTestElement3 {
@@ -95,6 +111,10 @@ describe('@behaviors', () => {
   });
 });
 
+//
+// @observers
+//
+
 @pd.observers(['observer', 'observer2'])
 class ObserverTestElement {
 }
@@ -120,6 +140,10 @@ describe('@observers', () => {
     expect(elementPrototype.observers[3]).equals('observer4');
   });
 });
+
+//
+// @listener
+//
 
 class ListenerTestElement {
   @pd.listener('eventA')
@@ -151,6 +175,10 @@ describe('@listener', () => {
   });
 });
 
+//
+// @listeners
+//
+
 @pd.listeners({ 'eventA': 'handleEventA', 'eventB': 'handleEventB' })
 class ListenerTestElement3 {
 }
@@ -176,6 +204,10 @@ describe('@listeners', () => {
     expect(elementPrototype.listeners).to.have.property('eventD');
   });
 });
+
+//
+// @hostAttributes
+//
 
 @pd.hostAttributes({
   attributeA: 'hello',
@@ -209,5 +241,67 @@ describe('@hostAttributes', () => {
     expect(elementPrototype.hostAttributes).to.have.property('attributeB', true);
     expect(elementPrototype.hostAttributes).to.have.property('attributeC', 1);
     expect(elementPrototype.hostAttributes).to.have.property('attributeD', 2);
+  });
+});
+
+//
+// @property
+//
+
+@pd.is('property-test-element')
+class PropertyTestElement {
+  @pd.property({
+    type: Boolean,
+    value: true,
+    reflectToAttribute: true,
+    readOnly: true,
+    notify: true,
+    computed: 'computeValue',
+    observer: 'observeValue'
+  })
+  booleanProp: boolean;
+}
+
+@pd.is('property-test-element2')
+class PropertyTestElement2 {
+  @pd.property({ type: Boolean })
+  booleanProp: boolean;
+  
+  @pd.property({ type: Date })
+  dateProp: Date;
+
+  @pd.property({ type: Number })
+  numberProp: number;
+
+  @pd.property({ type: String })
+  stringProp: string;
+
+  @pd.property({ type: Array })
+  arrayProp: number[];
+
+  @pd.property({ type: Object })
+  objectProp: any;
+}
+
+describe('@property', () => {
+  it('adds "properties" property to the class prototype', () => {
+    expect(PropertyTestElement.prototype).to.have.property('properties').that.has.property('booleanProp');
+    let polymerProps: any = (<polymer.IBehavior>(PropertyTestElement.prototype)).properties;
+    expect(polymerProps.booleanProp).to.have.property('type', Boolean);
+    expect(polymerProps.booleanProp).to.have.property('value', true);
+    expect(polymerProps.booleanProp).to.have.property('reflectToAttribute', true);
+    expect(polymerProps.booleanProp).to.have.property('readOnly', true);
+    expect(polymerProps.booleanProp).to.have.property('notify', true);
+    expect(polymerProps.booleanProp).to.have.property('computed', 'computeValue');
+    expect(polymerProps.booleanProp).to.have.property('observer', 'observeValue');
+  });
+  it('adds additional properties to an existing "properties" property on the class prototype', () => {
+    let elementPrototype: polymer.IBehavior = PropertyTestElement2.prototype;
+    expect(elementPrototype.properties).to.have.property('booleanProp').with.property('type', Boolean);
+    expect(elementPrototype.properties).to.have.property('dateProp').with.property('type', Date);
+    expect(elementPrototype.properties).to.have.property('numberProp').with.property('type', Number);
+    expect(elementPrototype.properties).to.have.property('stringProp').with.property('type', String);
+    expect(elementPrototype.properties).to.have.property('arrayProp').with.property('type', Array);
+    expect(elementPrototype.properties).to.have.property('objectProp').with.property('type', Object);
   });
 });

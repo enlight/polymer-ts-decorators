@@ -9,7 +9,7 @@ export function is(elementName: string): ClassDecorator {
   };
 }
 
-export function extendsElement(elementName: string): ClassDecorator {
+export function extend(elementName: string): ClassDecorator {
   return (targetClass: Function) => {
     targetClass.prototype.extends = elementName;
   };
@@ -67,7 +67,7 @@ export function hostAttributes(attributeMap: any): ClassDecorator {
   };
 }
 
-export function property<T>(propertyDefinition: polymer.IProperty<T> = { type: undefined }): PropertyDecorator {
+export function property<T>(propertyDefinition: polymer.IProperty<T>): PropertyDecorator {
   return (targetPrototype: polymer.IBehavior, propertyKey: string | symbol) => {
     targetPrototype.properties = targetPrototype.properties || {};
     targetPrototype.properties[propertyKey] = propertyDefinition;

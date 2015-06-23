@@ -235,6 +235,34 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
+Development
+===========
+
+You'll need `grunt-cli` installed globally, if it isn't already you can install it like so:
+```
+npm install -g grunt-cli
+```
+
+Next, install all the development dependencies via NPM:
+```
+npm install
+```
+
+Then to build the source:
+```
+grunt build
+```
+
+To run the tests:
+```
+grunt run-tests
+```
+
+To build and immediately run the tests:
+```
+grunt test
+```
+
 License
 =======
 

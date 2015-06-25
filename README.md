@@ -1,5 +1,7 @@
 # polymer-ts-decorators
 TypeScript decorators for Polymer 1.0 that enable more concise definition of web components.
+These decorators were originally inspired by an early version [PolymerTS](https://github.com/nippur72/PolymerTS)
+project.
 
 Prerequisites
 =============
@@ -15,9 +17,9 @@ imported like so:
 import * as pd from 'polymer-ts-decorators';
 ```
 
-@is
+@is()
 ---
-A class decorator that sets the `is` property on the class prototype.
+Generates a class decorator that sets the `is` property on the class prototype.
 The [`is`](https://www.polymer-project.org/1.0/docs/devguide/registering-elements.html#register-element)
 property is used to specify the HTML tag name for a custom element.
 
@@ -31,9 +33,9 @@ Polymer(MyElement.prototype);
 
 ```
 
-@extend
+@extend()
 -------
-A class decorator that sets the `extends` property on the class prototype.
+Generates a class decorator that sets the `extends` property on the class prototype.
 The [`extends`](https://www.polymer-project.org/1.0/docs/devguide/registering-elements.html#type-extension)
 property is used to specify which native HTML element a custom element extends.
 
@@ -47,9 +49,9 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
-@property
+@property()
 ---------
-A property decorator that adds a Polymer property definition to the
+Generates a property decorator that adds a Polymer property definition to the
 [`properties`](https://www.polymer-project.org/1.0/docs/devguide/properties.html)
 property on the class prototype.
 
@@ -79,9 +81,9 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
-@behavior
+@behavior()
 ---------
-A class decorator that adds a behavior prototype to the `behaviors` property on
+Generates a class decorator that adds a behavior prototype to the `behaviors` property on
 the class prototype. The [`behaviors`](https://www.polymer-project.org/1.0/docs/devguide/behaviors.html)
 property is an array of prototypes that Polymer will merge into the class prototype.
 
@@ -104,9 +106,9 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
-@behaviors
+@behaviors()
 ----------
-A class decorator that adds behavior prototypes to the `behaviors` property on the
+Generates a class decorator that adds behavior prototypes to the `behaviors` property on the
 class prototype. The [`behaviors`](https://www.polymer-project.org/1.0/docs/devguide/behaviors.html)
 property is an array of prototypes that Polymer will merge into the class
 prototype. If the decorator is applied multiple times to the same class the
@@ -122,9 +124,9 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
-@observers
+@observers()
 ----------
-A class decorator that creates an `observers` property on the class prototype.
+Generates a class decorator that creates an `observers` property on the class prototype.
 The [`observers`](https://www.polymer-project.org/1.0/docs/devguide/properties.html#multi-property-observers)
 property is an array of names of functions that observe changes to a set of properties,
 sub-properties, or array properties. If the decorator is applied multiple times to
@@ -152,9 +154,9 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
-@listener
+@listener()
 ---------
-A method decorator that creates a mapping between an event name and a method
+Generates a method decorator that creates a mapping between an event name and a method
 that will be used to handle that event, the mapping is stored in the
 [`listeners`](https://www.polymer-project.org/1.0/docs/devguide/events.html#event-listeners)
 property on the class prototype.
@@ -175,9 +177,9 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
-@listeners
+@listeners()
 ----------
-A class decorator that creates a `listeners` property on the class prototype.
+Generates a class decorator that creates a `listeners` property on the class prototype.
 The [`listeners`](https://www.polymer-project.org/1.0/docs/devguide/events.html#event-listeners)
 property is an object whose keys and values correspond to event names and event handlers.
 If the decorator is applied multiple times to the same class the event handler
@@ -211,9 +213,9 @@ class MyElement {
 Polymer(MyElement.prototype);
 ```
 
-@hostAttributes
+@hostAttributes()
 ---------------
-A class decorator that creates a `hostAttributes` property on the class prototype.
+Generates a class decorator that creates a `hostAttributes` property on the class prototype.
 The [`hostAttributes`](https://www.polymer-project.org/1.0/docs/devguide/registering-elements.html#host-attributes)
 property is an object whose keys and values correspond to attribute names and values.
 If the decorator is applied multiple times to the same class the attribute definitions are merged into a single object. Polymer will set these HTML

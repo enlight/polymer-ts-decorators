@@ -49,7 +49,6 @@ module.exports = function(grunt) {
     'typescript': {
        lib: {
          src: ['src/**/*.ts'],
-         dest: 'lib',
          options: {
            module: 'commonjs',
            noImplicitAny: true,

@@ -7,7 +7,7 @@ require('source-map-support').install();
 
 import * as chai from 'chai';
 import chaiAsPromised = require('chai-as-promised');
-import * as pd from '../src/decorators';
+import * as pd from '../lib/decorators';
 
 chai.use(chaiAsPromised);
 

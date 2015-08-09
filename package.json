@@ -1,9 +1,9 @@
 ﻿{
   "name": "polymer-ts-decorators",
   "version": "0.1.0",
-  "engines": [
-    "node >=0.12.0"
-  ],
+  "engines": {
+    "node": ">=0.12.0"
+  },
   "description": "TypeScript decorators for Polymer 1.0 that enable more concise definition of web components.",
   "main": "src/decorators.ts",
   "scripts": {
@@ -22,6 +22,7 @@
   "devDependencies": {
     "chai": "^2.1.2",
     "chai-as-promised": "^4.3.0",
+    "dts-generator": "enlight/dts-generator#ts-next",
     "grunt": "^0.4.5",
     "grunt-mocha-test": "^0.12.7",
     "grunt-tsd": "^0.2.0-beta.1",

@@ -64,6 +64,17 @@ module.exports = function(grunt) {
            target: 'es5'
          }
        }
+    },
+    'dtsGenerator': {
+      options: {
+        baseDir: './lib',
+        name: 'polymer-ts-decorators',
+        out: 'lib/decorators.d.ts',
+        main: 'polymer-ts-decorators'
+      },
+      default: {
+        src: ['lib/decorators.ts']
+      }
     }
   });
 
@@ -72,10 +83,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-tslint');
   grunt.loadNpmTasks('grunt-typedoc');
   grunt.loadNpmTasks('grunt-typescript');
+  grunt.loadNpmTasks('dts-generator');
   
   grunt.registerTask('docs', ['typedoc']);
   
-  grunt.registerTask('build', ['typescript']);
+  grunt.registerTask('build', ['typescript', 'dtsGenerator']);
   
   grunt.registerTask('run-tests', ['mochaTest:test']);
   

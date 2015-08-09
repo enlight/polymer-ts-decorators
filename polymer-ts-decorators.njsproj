@@ -23,8 +23,8 @@
     <Content Include="conf\tslint.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="src\tsconfig.json" />
-    <TypeScriptCompile Include="src\decorators.ts" />
+    <Content Include="lib\tsconfig.json" />
+    <TypeScriptCompile Include="lib\decorators.ts" />
     <Compile Include="Gruntfile.js" />
     <Content Include="test\tsconfig.json" />
     <TypeScriptCompile Include="test\tests.ts" />

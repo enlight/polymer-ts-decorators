@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function(grunt) {
   grunt.initConfig({
     'pkg': grunt.file.readJSON('package.json'),
@@ -46,22 +48,18 @@ module.exports = function(grunt) {
         src: 'src/**/*.ts'
       }
     },
-    'typescript': {
+    'tsc': {
+       options: {
+         tscPath: path.resolve('node_modules', 'typescript', 'bin', 'tsc')
+       },
        lib: {
-         src: ['src/**/*.ts'],
          options: {
-           module: 'commonjs',
-           noImplicitAny: true,
-           sourceMap: true,
-           target: 'es5'
+           project: './lib'
          }
        },
        test: {
-         src: ['test/**/*.ts'],
          options: {
-           module: 'commonjs',
-           sourceMap: true,
-           target: 'es5'
+           project: './test'
          }
        }
     },
@@ -82,12 +80,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-tsd');
   grunt.loadNpmTasks('grunt-tslint');
   grunt.loadNpmTasks('grunt-typedoc');
-  grunt.loadNpmTasks('grunt-typescript');
+  grunt.loadNpmTasks('grunt-tsc');
   grunt.loadNpmTasks('dts-generator');
   
   grunt.registerTask('docs', ['typedoc']);
   
-  grunt.registerTask('build', ['typescript', 'dtsGenerator']);
+  grunt.registerTask('build', ['tsc', 'dtsGenerator']);
   
   grunt.registerTask('run-tests', ['mochaTest:test']);
   

@@ -68,7 +68,8 @@ module.exports = function(grunt) {
         baseDir: './lib',
         name: 'polymer-ts-decorators',
         out: 'lib/decorators.d.ts',
-        main: 'polymer-ts-decorators'
+        main: 'polymer-ts-decorators/decorators',
+        target: 'es5'
       },
       default: {
         src: ['lib/decorators.ts']
@@ -85,7 +86,7 @@ module.exports = function(grunt) {
   
   grunt.registerTask('docs', ['typedoc']);
   
-  grunt.registerTask('build', ['tsc', 'dtsGenerator']);
+  grunt.registerTask('build', ['tsc:lib', 'dtsGenerator', 'tsc:test']);
   
   grunt.registerTask('run-tests', ['mochaTest:test']);
   

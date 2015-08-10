@@ -1,8 +1,6 @@
 // Copyright (c) 2015 Vadim Macagon
 // MIT License, see LICENSE file for full terms.
 
-/// <reference path="../typings/polymer/polymer.d.ts" />
-
 export function is(elementName: string): ClassDecorator {
   return (targetClass: Function) => {
     targetClass.prototype.is = elementName;

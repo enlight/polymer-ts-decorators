@@ -68,8 +68,7 @@ module.exports = function(grunt) {
         baseDir: './lib',
         name: 'polymer-ts-decorators',
         out: 'lib/decorators.d.ts',
-        main: 'polymer-ts-decorators/decorators',
-        target: 'es5'
+        main: 'polymer-ts-decorators/decorators'
       },
       default: {
         src: ['lib/decorators.ts']

@@ -14,6 +14,7 @@
     "files": [
         "../typings/lib.es6.d.ts",
         "../typings/test-tsd.d.ts",
+        "../typings/polymer/polymer.d.ts",
         "../lib/decorators.d.ts",
         "./tests.ts"
     ]

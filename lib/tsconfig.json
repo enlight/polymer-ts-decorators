@@ -6,7 +6,7 @@
         "declaration": false,
         "noImplicitAny": true,
         "removeComments": false,
-        "noLib": false,
+        "noLib": true,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
         "experimentalDecorators": true

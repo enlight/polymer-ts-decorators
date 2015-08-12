@@ -1,8 +1,6 @@
 // Copyright (c) 2015 Vadim Macagon
 // MIT License, see LICENSE file for full terms.
 
-/// <reference path="../typings/test-tsd.d.ts" />
-
 require('source-map-support').install();
 
 import * as chai from 'chai';

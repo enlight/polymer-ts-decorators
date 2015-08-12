@@ -6,18 +6,14 @@
         "declaration": false,
         "noImplicitAny": false,
         "removeComments": true,
-        "noLib": false,
+        "noLib": true,
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
         "experimentalDecorators": true
     },
     "files": [
         "../typings/lib.es6.d.ts",
-        "../typings/chai/chai.d.ts",
-        "../typings/chai-as-promised/chai-as-promised.d.ts",
-        "../typings/mocha/mocha.d.ts",
-        "../typings/node/node.d.ts",
-        "../typings/polymer/polymer.d.ts",
+        "../typings/test-tsd.d.ts",
         "../lib/decorators.d.ts",
         "./tests.ts"
     ]

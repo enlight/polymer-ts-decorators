@@ -1,6 +1,4 @@
 node_modules/
 .ntvs_analysis.dat
-lib/*.js
-lib/*.js.map
 test/*.js
 test/*.js.map

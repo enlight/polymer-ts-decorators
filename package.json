@@ -6,6 +6,7 @@
   },
   "description": "TypeScript decorators for Polymer 1.0 that enable more concise definition of web components.",
   "main": "lib/decorators.js",
+  "typings": "lib/decorators.d.ts",
   "scripts": {
     "preinstall": "",
     "test": "echo \"Error: no test specified\" && exit 1"

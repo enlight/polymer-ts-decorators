@@ -85,7 +85,7 @@ module.exports = function(grunt) {
   
   grunt.registerTask('docs', ['typedoc']);
   
-  grunt.registerTask('build', ['tsc:lib', 'dtsGenerator', 'tsc:test']);
+  grunt.registerTask('build', ['tsc:lib', 'tsc:test']);
   
   grunt.registerTask('run-tests', ['mochaTest:test']);
   

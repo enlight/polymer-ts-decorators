@@ -14,30 +14,35 @@ export function extend(elementName: string): ClassDecorator {
 }
 
 /**
- * Generates a class decorator that adds a behavior to a custom Polymer element.
- *
- * @param behaviorClassOrPrototype A behavior class (a constructor function) or a prototype object.
+ * Generates a class decorator that adds a list of behaviors to a custom Polymer element.
+ * 
+ * @param getBehaviors A function that returns an array of behavior classes
+ *                     (i.e. constructor functions) or prototypes.
  */
-export function behavior(behaviorClassOrPrototype: Function | Object): ClassDecorator {
+export function behaviors(getBehaviors: () => any[]): ClassDecorator {
   return (targetClass: Function) => {
-    let prototype: polymer.IBehavior = targetClass.prototype;
-    prototype.behaviors = prototype.behaviors || [];
-    prototype.behaviors.push((behaviorClassOrPrototype instanceof Function) ?
-      behaviorClassOrPrototype.prototype : behaviorClassOrPrototype
-    );
-  };
-}
-
-/** Generates a class decorator that adds a list of behaviors to a custom Polymer element. */
-export function behaviors(behaviorClassesOrPrototypes: Array<Function | Object>): ClassDecorator {
-  return (targetClass: Function) => {
-    let prototype: polymer.IBehavior = targetClass.prototype;
-    let behaviors = behaviorClassesOrPrototypes.map(
-      behaviorClassOrPrototype => ((behaviorClassOrPrototype instanceof Function) ?
-        behaviorClassOrPrototype.prototype : behaviorClassOrPrototype
-      )
-    );
-    prototype.behaviors = prototype.behaviors ? prototype.behaviors.concat(behaviors) : behaviors;
+    const existingDescriptor = Object.getOwnPropertyDescriptor(targetClass, 'behaviors');
+    if (existingDescriptor) {
+      throw new Error('The @behaviors decorator cannot be applied more than once per class.')
+    }
+    // Polymer looks for behaviors to mix into an element in the `behaviors` property
+    Object.defineProperty(targetClass.prototype, 'behaviors', {
+      get: function () {
+        if (!this._behaviors) {
+          // Polymer expects an array of prototypes, so replace the constructors with the
+          // corresponding prototypes.
+          this._behaviors = getBehaviors().map(classOrPrototype =>
+            ((classOrPrototype instanceof Function) ? classOrPrototype.prototype : classOrPrototype)
+          );
+        }
+        return this._behaviors;
+      },
+      // Polymer will flatten out composite behaviors and then assign the result back to the
+      // `behaviors` property on the element, so the property must have a setter.
+      set: function (value: any[]) {
+        this._behaviors = value;
+      }
+    });
   };
 }
 

@@ -41,7 +41,7 @@ describe('@extend', () => {
 });
 
 //
-// @behavior
+// @behaviors
 //
 
 class TestBehavior implements polymer.IBehavior {
@@ -50,35 +50,8 @@ class TestBehavior implements polymer.IBehavior {
 class TestBehavior2 implements polymer.IBehavior {
 }
 
-@pd.behavior(TestBehavior)
+@pd.behaviors(() => [TestBehavior, TestBehavior2])
 class BehaviorTestElement {
-}
-
-@pd.behavior(TestBehavior2.prototype)
-@pd.behavior(TestBehavior)
-class BehaviorTestElement2 {
-}
-
-describe('@behavior', () => {
-  it('adds "behaviors" property to the class prototype', () => {
-    let elementPrototype: polymer.IBehavior = BehaviorTestElement.prototype;
-    expect(elementPrototype).to.have.property('behaviors').that.has.lengthOf(1);
-    expect(elementPrototype.behaviors[0]).equals(TestBehavior.prototype);
-  });
-  it('adds a behavior class to an existing "behaviors" property on the class prototype', () => {
-    let elementPrototype: polymer.IBehavior = BehaviorTestElement2.prototype;
-    expect(elementPrototype).to.have.property('behaviors').that.has.lengthOf(2);
-    expect(elementPrototype.behaviors[0]).equals(TestBehavior.prototype);
-    expect(elementPrototype.behaviors[1]).equals(TestBehavior2.prototype);
-  });
-});
-
-//
-// @behaviors
-//
-
-@pd.behaviors([TestBehavior, TestBehavior2])
-class BehaviorTestElement3 {
 }
 
 class TestBehavior3 implements polymer.IBehavior {
@@ -87,25 +60,22 @@ class TestBehavior3 implements polymer.IBehavior {
 class TestBehavior4 implements polymer.IBehavior {
 }
 
-@pd.behaviors([TestBehavior3.prototype, TestBehavior4.prototype])
-@pd.behaviors([TestBehavior, TestBehavior2])
-class BehaviorTestElement4 {
+@pd.behaviors(() => [TestBehavior3.prototype, TestBehavior4.prototype])
+class BehaviorTestElement2 {
 }
 
 describe('@behaviors', () => {
-  it('adds "behaviors" property to the class prototype', () => {
-    let elementPrototype: polymer.IBehavior = BehaviorTestElement3.prototype;
+  it('adds "behaviors" property to the class prototype (with classes)', () => {
+    let elementPrototype: polymer.IBehavior = BehaviorTestElement.prototype;
     expect(elementPrototype).to.have.property('behaviors').that.has.lengthOf(2);
     expect(elementPrototype.behaviors[0]).equals(TestBehavior.prototype);
     expect(elementPrototype.behaviors[1]).equals(TestBehavior2.prototype);
   });
-  it('adds additional behavior prototypes to an existing "behaviors" property on the class prototype', () => {
-    let elementPrototype: polymer.IBehavior = BehaviorTestElement4.prototype;
+  it('adds "behaviors" property to the class prototype (with prototypes)', () => {
+    let elementPrototype: polymer.IBehavior = BehaviorTestElement2.prototype;
     expect(elementPrototype).to.have.property('behaviors').that.has.lengthOf(4);
-    expect(elementPrototype.behaviors[0]).equals(TestBehavior.prototype);
-    expect(elementPrototype.behaviors[1]).equals(TestBehavior2.prototype);
-    expect(elementPrototype.behaviors[2]).equals(TestBehavior3.prototype);
-    expect(elementPrototype.behaviors[3]).equals(TestBehavior4.prototype);
+    expect(elementPrototype.behaviors[0]).equals(TestBehavior3.prototype);
+    expect(elementPrototype.behaviors[1]).equals(TestBehavior4.prototype);
   });
 });
 

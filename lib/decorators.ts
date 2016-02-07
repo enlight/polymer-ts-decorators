@@ -25,7 +25,9 @@ export function behaviors(getBehaviors: () => any[]): ClassDecorator {
     if (existingDescriptor) {
       throw new Error('The @behaviors decorator cannot be applied more than once per class.')
     }
-    // Polymer looks for behaviors to mix into an element in the `behaviors` property
+    // Polymer looks for behaviors to mix into an element in the `behaviors` property,
+    // see https://github.com/Polymer/polymer/issues/2451 for some background on the approach
+    // taken here.
     Object.defineProperty(targetClass.prototype, 'behaviors', {
       get: function () {
         if (!this._behaviors) {
